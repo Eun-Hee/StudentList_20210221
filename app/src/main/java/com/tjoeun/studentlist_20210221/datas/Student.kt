@@ -4,5 +4,4 @@ class Student(
     val name: String,
     val birthYear: Int) {
 
-
 }
