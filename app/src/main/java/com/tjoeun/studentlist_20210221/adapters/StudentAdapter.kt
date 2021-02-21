@@ -1,5 +1,6 @@
 package com.tjoeun.studentlist_20210221.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ class StudentAdapter(
 //    student_list_item xml을 가지고 => 코틀린에서 다룰수 있게 도와주는 변수. (inf) 클래스 (LayoutInflater)
       val inf = LayoutInflater.from(mContext)
 
+    @SuppressLint("InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         var tempRow = convertView
