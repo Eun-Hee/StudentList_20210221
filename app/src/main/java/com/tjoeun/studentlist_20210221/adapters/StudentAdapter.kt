@@ -24,6 +24,8 @@ class StudentAdapter(
             tempRow = inf.inflate(R.layout.student_list_item, null)
         }
 
-        val row = tempRow
+        val row = tempRow!!
+
+        return row
     }
 }
