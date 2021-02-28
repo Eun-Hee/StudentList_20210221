@@ -1,8 +1,10 @@
 package com.tjoeun.studentlist_20210221
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.view.menu.MenuAdapter
 import com.tjoeun.studentlist_20210221.adapters.StudentAdapter
 import com.tjoeun.studentlist_20210221.datas.Student
@@ -38,5 +40,26 @@ class MainActivity : AppCompatActivity() {
 
 //        리스트뷰의 어댑터로써 => mAdapter를 지정
         studentListView.adapter = mAdapter
+
+//        리스트뷰의 각 줄이 눌렸을 경우 대처
+        studentListView.setOnItemClickListener { parent, view, position, id ->
+
+//            position : 몇번 줄이 눌렸는지 알려줌
+
+//            클릭된 학생의 이름을 토스트로
+            val clickedStudent = mStudentList[position]
+
+            Toast.makeText(this, clickedStudent.name, Toast.LENGTH_SHORT).show()
+
+        }
+
+        studentListView.setOnItemLongClickListener { parent, view, position, id ->
+
+            val std = mStudentList[position]
+            Toast.makeText(this, "${std.name} 길게 눌림", Toast.LENGTH_SHORT).show()
+
+//            true - 롱클릭 전용, false - 전용X
+            return@setOnItemLongClickListener true
+        }
     }
 }
