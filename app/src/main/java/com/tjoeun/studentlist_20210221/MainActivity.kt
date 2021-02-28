@@ -76,7 +76,8 @@ class MainActivity : AppCompatActivity() {
                 mAdapter.notifyDataSetChanged()
 
             })
-            alert.setNegativeButton("취소", SipSession.Listener)
+            alert.setNegativeButton("취소", null)
+            alert.show()
 
 
 //            true - 롱클릭 전용, false - 전용X, 일반 클릭도 처리
