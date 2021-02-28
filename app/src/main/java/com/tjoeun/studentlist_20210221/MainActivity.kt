@@ -1,10 +1,13 @@
 package com.tjoeun.studentlist_20210221
 
 import android.content.Context
+import android.content.DialogInterface
+import android.net.sip.SipSession
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.menu.MenuAdapter
 import com.tjoeun.studentlist_20210221.adapters.StudentAdapter
 import com.tjoeun.studentlist_20210221.datas.Student
@@ -58,11 +61,23 @@ class MainActivity : AppCompatActivity() {
 //            val std = mStudentList[position]
 //            Toast.makeText(this, "${std.name} 길게 눌림", Toast.LENGTH_SHORT).show()
 
-//            목록에서 해당 위치의 학생을 제거
-            mStudentList.removeAt(position)
+//            진짜 삭제를 진행하기 전에, 정말 지울건지? 물어보고 진행
+
+            val alert = AlertDialog.Builder(this )
+            alert.setTitle("삭제 확인")
+            alert.setMessage("정말 해당 학생을 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+
+//                확인 버튼이 눌리면 할 일 => 진짜 삭제 진행
+                //            목록에서 해당 위치의 학생을 제거
+                mStudentList.removeAt(position)
 
 //            리스트뷰의 어댑테에게 알림 전달 => 새로고침 요청
-            mAdapter.notifyDataSetChanged()
+                mAdapter.notifyDataSetChanged()
+
+            })
+            alert.setNegativeButton("취소", SipSession.Listener)
+
 
 //            true - 롱클릭 전용, false - 전용X, 일반 클릭도 처리
             return@setOnItemLongClickListener true
